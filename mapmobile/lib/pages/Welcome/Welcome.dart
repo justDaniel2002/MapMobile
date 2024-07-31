@@ -10,40 +10,47 @@ class Welcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Header(),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  flex: 3,
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BoldXLText(text: "GIGA MALL XIN CHÀO BẠN!"),
-                        DynamicText(
-                          text:
-                              "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại GIGA MALL nhé.",
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w100),
-                          verMargin: 30,
-                        )
-                      ],
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Header(),
+              Container(
+                padding: const EdgeInsets.only(top: 40),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const BoldXLText(text: "BOOKSTREET XIN CHÀO BẠN!"),
+                            const DynamicText(
+                              text:
+                                  "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại BOOKSTREET nhé.",
+                              textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w100),
+                              verMargin: 30,
+                            ),
+                            Image.asset('assets/images/bookbanner.jpg',
+                                width: double.infinity, fit: BoxFit.contain)
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    const Flexible(flex: 7, child: MyBanner())
+                  ],
                 ),
-                const Flexible(flex: 7, child: MyBanner())
-              ],
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

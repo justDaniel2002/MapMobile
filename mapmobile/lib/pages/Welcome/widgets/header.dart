@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/shared/currentTime.dart';
 import 'package:mapmobile/shared/switch.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
@@ -19,7 +20,7 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradientText(
-                "GIGAMAIL",
+                "BOOKSTREET",
                 style: TextStyle(fontSize: 25),
               ),
               ThinSmText(
@@ -30,7 +31,7 @@ class Header extends StatelessWidget {
           ),
           Row(
             children: [
-              BoldLGText(text: getCurrentTime()),
+              const Currenttime(),
               BoldLGText(
                 text: getCurrentDate(),
                 color: Colors.black54,

@@ -8,9 +8,10 @@ class GradientBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       decoration: BoxDecoration(
-          gradient: gradient, borderRadius: BorderRadius.circular(10)),
+          gradient: gradient,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white, width: 1)),
       child: widget,
     );
   }

@@ -8,7 +8,14 @@ class MyBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset('assets/images/mallbanner.jpg', fit: BoxFit.contain),
+        Container(
+          width: double.infinity,
+          clipBehavior: Clip.hardEdge,
+          margin: const EdgeInsets.only(bottom: 30),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          child:
+              Image.asset('assets/images/mallbanner.jpg', fit: BoxFit.contain),
+        ),
         const GradientWid()
       ],
     );
