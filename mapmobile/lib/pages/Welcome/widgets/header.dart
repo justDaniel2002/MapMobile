@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/shared/currentTime.dart';
+import 'package:mapmobile/shared/currenttime.dart';
 import 'package:mapmobile/shared/switch.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
@@ -20,7 +20,7 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradientText(
-                "BOOKSTREET",
+                "Đường Sách TPHCM",
                 style: TextStyle(fontSize: 25),
               ),
               ThinSmText(

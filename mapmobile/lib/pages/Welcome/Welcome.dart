@@ -29,10 +29,12 @@ class Welcome extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const BoldXLText(text: "BOOKSTREET XIN CHÀO BẠN!"),
+                            const BoldXLText(
+                                text:
+                                    "Đường Sách Nguyễn Văn Bình XIN CHÀO BẠN!"),
                             const DynamicText(
                               text:
-                                  "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại BOOKSTREET nhé.",
+                                  "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại đường sách nhé.",
                               textStyle: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,

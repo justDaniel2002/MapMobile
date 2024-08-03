@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 String getCurrentTime() {
   DateTime now = DateTime.now();
   int hour = now.hour;
@@ -28,4 +30,22 @@ String getCurrentDate() {
   String monthStr = month < 10 ? '0$month' : '$month';
 
   return '$dayStr.$monthStr.$year';
+}
+
+bool isImageUrl(String url) {
+  final imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff'];
+  final urlPattern = RegExp(
+    r'^(http(s?):)([/|.|\w|\s|-])*\.(?:' + imageExtensions.join('|') + r')$',
+    caseSensitive: false,
+  );
+  return urlPattern.hasMatch(url);
+}
+
+String formatToVND(double amount) {
+  final NumberFormat currencyFormat = NumberFormat.currency(
+    locale: 'vi_VN',
+    symbol: '₫', // Vietnamese Dong symbol
+    decimalDigits: 2, // Number of decimal places
+  );
+  return currencyFormat.format(amount);
 }

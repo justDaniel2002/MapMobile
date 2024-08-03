@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mapmobile/shared/box.dart';
 import 'package:mapmobile/shared/text.dart';
 
 List<Map<String, dynamic>> myList = [
   {
     'Icon': Icons.book,
-    'Content': 'Thông tin hội viên',
+    'Content': 'Thông tin sách',
+    'link': '/books',
     'Color1': const Color.fromARGB(255, 255, 225, 197),
     'Color2': const Color.fromARGB(255, 255, 203, 14),
   },
   {
     'Icon': Icons.people,
     'Content': 'Thông tin hội viên',
+    'link': '/books',
     'Color1': const Color.fromARGB(255, 255, 201, 231),
     'Color2': const Color.fromARGB(255, 201, 0, 134),
   },
   {
     'Icon': Icons.book,
     'Content': 'Thông tin hội viên',
+    'link': '/books',
     'Color1': const Color.fromARGB(255, 216, 213, 255),
     'Color2': const Color.fromARGB(255, 78, 1, 179),
   },
@@ -64,7 +68,7 @@ class GradientWid extends StatelessWidget {
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 40),
-                      padding: const EdgeInsets.only(right: 40),
+                      padding: const EdgeInsets.only(right: 50),
                       child: DynamicText(
                         text: item['Content'],
                         textStyle: const TextStyle(
@@ -80,21 +84,27 @@ class GradientWid extends StatelessWidget {
               Positioned(
                   bottom: -10,
                   right: -10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 10),
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20))),
+                  child: InkWell(
+                    onTap: () {
+                      print(item['link']);
+                      context.go(item['link']);
+                    },
                     child: Container(
-                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: const Icon(
-                        Icons.north_east,
-                        color: Colors.white,
+                          border: Border.all(color: Colors.white, width: 10),
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20))),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: const Icon(
+                          Icons.north_east,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ))
