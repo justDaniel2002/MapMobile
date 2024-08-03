@@ -83,7 +83,7 @@ class _SouvenirState extends State<Souvenir> {
                     child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.only(right: 10),
-                        child: SouvenirList(Souvenirs: Souvenirs))),
+                        child: SouvenirList(souvenirs: Souvenirs))),
                 Flexible(
                     flex: 2,
                     child: Row(

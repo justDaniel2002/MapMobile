@@ -9,11 +9,12 @@ class BookList extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentWidth = constraints.maxWidth;
-      double itemWidth = parentWidth / 6;
+      double deviceHeight = MediaQuery.of(context).size.height;
+      double itemWidth = parentWidth / 6.2;
       return Container(
         color: Colors.white,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-        height: parentWidth - parentWidth / 5,
+        height: deviceHeight - deviceHeight / 4,
         child: SingleChildScrollView(
           child: Wrap(
             spacing: 14.0,

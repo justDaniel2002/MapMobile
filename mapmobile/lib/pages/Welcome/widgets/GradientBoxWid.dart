@@ -14,7 +14,7 @@ List<Map<String, dynamic>> myList = [
   },
   {
     'Icon': Icons.redeem,
-    'Content': 'Thông tin đồ lưu niệm',
+    'Content': 'Đồ lưu niệm',
     'link': '/souvenir',
     'Color1': const Color.fromARGB(255, 255, 201, 231),
     'Color2': const Color.fromARGB(255, 201, 0, 134),
