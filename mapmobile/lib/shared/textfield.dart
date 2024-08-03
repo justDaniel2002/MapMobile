@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({super.key});
-
+  const SearchTextField({super.key, required this.onTextChange});
+  final Function onTextChange;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 10),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        onChanged: (value) {
+          print("text change ...$value");
+          onTextChange(value);
+        },
+        decoration: const InputDecoration(
             suffixIcon: Icon(Icons.search),
             hintText: 'Tên',
             border: OutlineInputBorder(

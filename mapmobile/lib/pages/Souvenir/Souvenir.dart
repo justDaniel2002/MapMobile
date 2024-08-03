@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/pages/Book/widgets/booklist.dart';
-import 'package:mapmobile/pages/Book/widgets/categorysidebar.dart';
-import 'package:mapmobile/pages/Book/widgets/genresidebar.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/pages/Souvenir/widgets/SouvenirList.dart';
+import 'package:mapmobile/pages/Souvenir/widgets/categorysidebar.dart';
+import 'package:mapmobile/pages/Souvenir/widgets/genresidebar.dart';
+import 'package:mapmobile/pages/Souvenir/widgets/header.dart';
 import 'package:mapmobile/services/genreservice.dart';
 import 'package:mapmobile/services/productservice.dart';
 
-class Book extends StatefulWidget {
-  const Book({super.key});
+class Souvenir extends StatefulWidget {
+  const Souvenir({super.key});
 
   @override
-  State<Book> createState() => _BookState();
+  State<Souvenir> createState() => _SouvenirState();
 }
 
-class _BookState extends State<Book> {
-  List<dynamic> books = [];
+class _SouvenirState extends State<Souvenir> {
+  List<dynamic> Souvenirs = [];
   List<dynamic> genres = [];
   int cid = 0;
   int gid = 0;
@@ -26,28 +26,28 @@ class _BookState extends State<Book> {
       });
     });
 
-    getBook(categoryId: categoryId).then((res) {
+    getSouvenir(categoryId: categoryId).then((res) {
       setState(() {
-        books = res.data['data']['list'];
+        Souvenirs = res.data['data']['list'];
       });
     });
   }
 
   Future<void> onGenreChange(int genreId) async {
     gid = genreId;
-    getBook(categoryId: cid, genreId: genreId).then((res) {
+    getSouvenir(categoryId: cid, genreId: genreId).then((res) {
       setState(() {
-        books = res.data['data']['list'];
+        Souvenirs = res.data['data']['list'];
       });
     });
   }
 
   Future<void> onTextChange(String text) async {
     print("text change api... $text");
-    getBook(categoryId: cid, genreId: gid, search: text).then((res) {
-      print("get book ${res.data['data']['list']}");
+    getSouvenir(categoryId: cid, genreId: gid, search: text).then((res) {
+      print("get Souvenir ${res.data['data']['list']}");
       setState(() {
-        books = res.data['data']['list'];
+        Souvenirs = res.data['data']['list'];
       });
     });
   }
@@ -55,9 +55,9 @@ class _BookState extends State<Book> {
   @override
   void initState() {
     super.initState();
-    getBook().then((res) {
+    getSouvenir().then((res) {
       setState(() {
-        books = res.data['data']['list'];
+        Souvenirs = res.data['data']['list'];
       });
     });
   }
@@ -83,7 +83,7 @@ class _BookState extends State<Book> {
                     child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.only(right: 10),
-                        child: BookList(books: books))),
+                        child: SouvenirList(Souvenirs: Souvenirs))),
                 Flexible(
                     flex: 2,
                     child: Row(
