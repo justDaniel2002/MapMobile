@@ -49,3 +49,8 @@ String formatToVND(double amount) {
   );
   return currencyFormat.format(amount);
 }
+
+String formatDateTime(String input) {
+  DateTime dateTime = DateTime.parse(input);
+  return DateFormat('dd/MM/yyyy').format(dateTime);
+}

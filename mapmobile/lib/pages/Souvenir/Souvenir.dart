@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mapmobile/pages/Souvenir/widgets/SouvenirList.dart';
-import 'package:mapmobile/pages/Souvenir/widgets/categorysidebar.dart';
-import 'package:mapmobile/pages/Souvenir/widgets/genresidebar.dart';
 import 'package:mapmobile/pages/Souvenir/widgets/header.dart';
 import 'package:mapmobile/services/genreservice.dart';
 import 'package:mapmobile/services/productservice.dart';
@@ -66,41 +64,21 @@ class _SouvenirState extends State<Souvenir> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 244, 244, 244),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Container(
-                margin: const EdgeInsets.only(bottom: 40),
-                child: Header(
-                  onTextChange: onTextChange,
-                )),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                    flex: 3,
-                    child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.only(right: 10),
-                        child: SouvenirList(souvenirs: Souvenirs))),
-                Flexible(
-                    flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GenreSidebar(
-                          genres: genres,
-                          onGenreChange: onGenreChange,
-                        ),
-                        CategorySidebar(
-                          onCateChange: onCateChange,
-                        )
-                      ],
-                    ))
-              ],
-            )
-          ],
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: Header(
+                    onTextChange: onTextChange,
+                  )),
+              Container(
+                  width: double.infinity,
+                  child: SouvenirList(souvenirs: Souvenirs))
+            ],
+          ),
         ),
       ),
     );

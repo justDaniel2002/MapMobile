@@ -20,9 +20,9 @@ List<Map<String, dynamic>> myList = [
     'Color2': const Color.fromARGB(255, 201, 0, 134),
   },
   {
-    'Icon': Icons.book,
-    'Content': 'Thông tin hội viên',
-    'link': '/books',
+    'Icon': Icons.event,
+    'Content': 'Sự kiện',
+    'link': '/event',
     'Color1': const Color.fromARGB(255, 216, 213, 255),
     'Color2': const Color.fromARGB(255, 78, 1, 179),
   },

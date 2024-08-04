@@ -9,11 +9,11 @@ class SouvenirList extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentWidth = constraints.maxWidth;
-      double itemWidth = parentWidth / 6.2;
+      double itemWidth = parentWidth / 5.1;
       double deviceHeight = MediaQuery.of(context).size.height;
       return Container(
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         height: deviceHeight - deviceHeight / 4,
         child: SingleChildScrollView(
           child: Wrap(
