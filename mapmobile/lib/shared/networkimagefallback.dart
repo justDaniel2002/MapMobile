@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NetworkImageWithFallback extends StatelessWidget {
-  final String imageUrl;
-  final Widget fallbackWidget;
-
   const NetworkImageWithFallback({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.fallbackWidget,
-  }) : super(key: key);
+  });
+
+  final String imageUrl;
+  final Widget fallbackWidget;
 
   @override
   Widget build(BuildContext context) {

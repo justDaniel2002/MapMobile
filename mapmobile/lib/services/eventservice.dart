@@ -7,7 +7,7 @@ Future<dynamic> getEvent({String? search}) async {
   if (search != null && search.trim() != "") {
     filterData = [
       ...filterData,
-      {"field": "title", "value": search, "operand": 1}
+      {"field": "title", "value": search, "operand": 6}
     ];
   }
   final dio = Dio();

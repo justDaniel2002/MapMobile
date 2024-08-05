@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
 
@@ -25,35 +26,40 @@ class SouvenirList extends StatelessWidget {
                     ? b["urlImage"]
                     : "https://fptbs.azurewebsites.net/api/File/image/e8318d16-7bd9-43d9-bdd3-36feeb30bd7b.png?resizeIfWider=true&resizeImageAndRatio=true";
 
-                return Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 2,
-                          color: const Color.fromARGB(255, 211, 211, 211))),
-                  child: Column(
-                    children: [
-                      Image.network(imageURL,
-                          fit: BoxFit.contain, width: itemWidth,
-                          errorBuilder: (context, error, stackTrace) {
-                        return Container(
+                return InkWell(
+                  onTap: () {
+                    context.push("/product/${b["productId"]}");
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 2,
+                            color: const Color.fromARGB(255, 211, 211, 211))),
+                    child: Column(
+                      children: [
+                        Image.network(imageURL,
+                            fit: BoxFit.contain, width: itemWidth,
+                            errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: itemWidth,
+                            child: Icon(Icons.error),
+                          ); // Display the fallback widget if an error occurs
+                        }),
+                        SizedBox(
                           width: itemWidth,
-                          child: Icon(Icons.error),
-                        ); // Display the fallback widget if an error occurs
-                      }),
-                      SizedBox(
-                        width: itemWidth,
-                        child: Text(
-                          b["productName"],
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 17),
+                          child: Text(
+                            b["productName"],
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 17),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                          width: itemWidth,
-                          child: DynamicText(text: formatToVND(b["price"])))
-                    ],
+                        SizedBox(
+                            width: itemWidth,
+                            child: DynamicText(text: formatToVND(b["price"])))
+                      ],
+                    ),
                   ),
                 );
               })

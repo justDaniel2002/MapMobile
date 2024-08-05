@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/shared/html.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
 
@@ -23,12 +22,6 @@ class Eventwidget extends StatelessWidget {
           Stack(
             children: [
               Image.network(imageURL),
-              const Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Icon(
-                    Icons.heart_broken,
-                  ))
             ],
           ),
           Container(

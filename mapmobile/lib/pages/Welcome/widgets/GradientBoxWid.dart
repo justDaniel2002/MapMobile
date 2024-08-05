@@ -87,7 +87,7 @@ class GradientWid extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       print(item['link']);
-                      context.go(item['link']);
+                      context.push(item['link']);
                     },
                     child: Container(
                       decoration: BoxDecoration(

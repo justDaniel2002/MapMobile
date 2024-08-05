@@ -28,7 +28,7 @@ Future<dynamic> getBook({int? categoryId, int? genreId, String? search}) async {
   if (search != null && search.trim() != "") {
     filterData = [
       ...filterData,
-      {"field": "productName", "value": search, "operand": 1}
+      {"field": "productName", "value": search, "operand": 6}
     ];
   }
   final dio = Dio();
@@ -66,4 +66,10 @@ Future<dynamic> getSouvenir(
   final response = await dio.post('${baseURL}Product/paginate',
       data: {"limit": -1, "filters": filterData});
   return response;
+}
+
+Future<dynamic> getProductById(String? id) async {
+  final dio = Dio();
+  final response = await dio.get('${baseURL}Product/$id');
+  return response.data;
 }
