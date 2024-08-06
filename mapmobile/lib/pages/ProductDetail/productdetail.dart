@@ -75,7 +75,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
-                                    height: 300,
+                                    height: 350,
                                     child: GridView.count(
                                       // shrinkWrap: true,
                                       physics:
@@ -103,7 +103,18 @@ class _ProductDetailState extends State<ProductDetail> {
                                         const DynamicText(text: ("Giá")),
                                         DynamicText(
                                             text: formatToVND(
-                                                product['price'] ?? 0))
+                                                product['price'] ?? 0)),
+                                        const DynamicText(text: ("Vị trí bán")),
+                                        DynamicText(
+                                            text: product['storeName'] ??
+                                                "chưa có"),
+                                        const DynamicText(text: ("Tình trạng")),
+                                        DynamicText(
+                                            text: product['status'] == 1
+                                                ? "còn hàng"
+                                                : product['status'] == 2
+                                                    ? "hết hàng"
+                                                    : "không rõ"),
                                       ],
                                     ),
                                   ),
