@@ -15,3 +15,9 @@ Future<dynamic> getEvent({String? search}) async {
       data: {"limit": -1, "filters": filterData});
   return response;
 }
+
+Future<dynamic> getEventById({String? id}) async {
+  final dio = Dio();
+  final response = await dio.get('${baseURL}Event/$id');
+  return response.data;
+}
