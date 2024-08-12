@@ -16,10 +16,10 @@ class _CategorySidebarState extends State<CategorySidebar> {
   @override
   void initState() {
     super.initState();
-    getAllCate().then((res) {
+    getAllCate("1").then((res) {
       print(res.data);
       setState(() {
-        categories = res.data;
+        categories = res.data['data']['list'];
       });
     });
   }

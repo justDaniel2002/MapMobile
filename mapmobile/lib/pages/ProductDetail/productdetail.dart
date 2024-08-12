@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/productservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
@@ -52,9 +53,24 @@ class _ProductDetailState extends State<ProductDetail> {
                         color: Colors.white,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 10),
-                        child: NetworkImageWithFallback(
-                            imageUrl: product["urlImage"] ?? "",
-                            fallbackWidget: const Icon(Icons.error)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            NetworkImageWithFallback(
+                                imageUrl: product["urlImage"] ?? "",
+                                fallbackWidget: const Icon(Icons.error)),
+                            InkWell(
+                                onTap: () {
+                                  if (product["storeId"] != null) {
+                                    context.push("/map/${product["storeId"]}");
+                                  }
+                                },
+                                child: DynamicText(
+                                    text: product["storeName"] != null
+                                        ? "Đi đến cửa hàng"
+                                        : "Chưa mở bán"))
+                          ],
+                        ),
                       )),
                   Flexible(
                       flex: 3,

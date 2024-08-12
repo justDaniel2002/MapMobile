@@ -10,7 +10,7 @@ class SouvenirList extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentWidth = constraints.maxWidth;
-      double itemWidth = parentWidth / 5.1;
+      double itemWidth = parentWidth / 6.2;
       double deviceHeight = MediaQuery.of(context).size.height;
       return Container(
         color: Colors.white,
@@ -22,7 +22,7 @@ class SouvenirList extends StatelessWidget {
             runSpacing: 8.0,
             children: [
               ...souvenirs.map((b) {
-                final imageURL = isImageUrl(b["urlImage"])
+                final imageURL = isImageUrl(b["urlImage"] ?? "")
                     ? b["urlImage"]
                     : "https://fptbs.azurewebsites.net/api/File/image/e8318d16-7bd9-43d9-bdd3-36feeb30bd7b.png?resizeIfWider=true&resizeImageAndRatio=true";
 
