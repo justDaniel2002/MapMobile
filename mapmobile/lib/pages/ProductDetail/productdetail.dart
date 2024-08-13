@@ -67,7 +67,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 },
                                 child: DynamicText(
                                     text: product["storeName"] != null
-                                        ? "Đi đến cửa hàng"
+                                        ? "Đi đến cửa hàng >"
                                         : "Chưa mở bán"))
                           ],
                         ),
