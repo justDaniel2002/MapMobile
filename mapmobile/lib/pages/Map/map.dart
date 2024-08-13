@@ -102,7 +102,7 @@ class _MapWidgetState extends State<MapWidget> {
                                           ),
                                           DynamicText(
                                               text:
-                                                  "${location['locationName'] ?? ""} (location)")
+                                                  "${location['locationName'] ?? ""}")
                                         ],
                                       ),
                                       Row(
@@ -113,7 +113,7 @@ class _MapWidgetState extends State<MapWidget> {
                                           ),
                                           DynamicText(
                                               text:
-                                                  "${store['openingHours'] ?? ""} - ${store['closingHours'] ?? ""} (open/closing time)")
+                                                  "${store['openingHours'] ?? ""} - ${store['closingHours'] ?? ""}")
                                         ],
                                       )
                                     ],
