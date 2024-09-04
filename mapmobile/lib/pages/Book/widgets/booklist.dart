@@ -25,7 +25,7 @@ class BookList extends StatelessWidget {
                 final imageURL = b["urlImage"] != null &&
                         isImageUrl(b["urlImage"])
                     ? b["urlImage"]
-                    : "https://fptbs.azurewebsites.net/api/File/image/e8318d16-7bd9-43d9-bdd3-36feeb30bd7b.png?resizeIfWider=true&resizeImageAndRatio=true";
+                    : "https://inantao.com/wp-content/uploads/2021/03/3d-illustration-mockup-nbblank-hardcover-book-969x1024.jpg";
 
                 return InkWell(
                   onTap: () {

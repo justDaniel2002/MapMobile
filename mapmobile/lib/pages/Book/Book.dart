@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/booklist.dart';
 import 'package:mapmobile/pages/Book/widgets/categorysidebar.dart';
 import 'package:mapmobile/pages/Book/widgets/genresidebar.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/genreservice.dart';
 import 'package:mapmobile/services/productservice.dart';
+import 'package:provider/provider.dart';
 
 class Book extends StatefulWidget {
   const Book({super.key});
@@ -26,7 +28,7 @@ class _BookState extends State<Book> {
       });
     });
 
-    getBook(categoryId: categoryId).then((res) {
+    getBook(categoryId: categoryId, streetId: getStreet().streetId).then((res) {
       setState(() {
         books = res.data['data']['list'];
       });
@@ -35,7 +37,8 @@ class _BookState extends State<Book> {
 
   Future<void> onGenreChange(int genreId) async {
     gid = genreId;
-    getBook(categoryId: cid, genreId: genreId).then((res) {
+    getBook(categoryId: cid, genreId: genreId, streetId: getStreet().streetId)
+        .then((res) {
       setState(() {
         books = res.data['data']['list'];
       });
@@ -44,7 +47,12 @@ class _BookState extends State<Book> {
 
   Future<void> onTextChange(String text) async {
     print("text change api... $text");
-    getBook(categoryId: cid, genreId: gid, search: text).then((res) {
+    getBook(
+            categoryId: cid,
+            genreId: gid,
+            search: text,
+            streetId: getStreet().streetId)
+        .then((res) {
       print("get book ${res.data['data']['list']}");
       setState(() {
         books = res.data['data']['list'];
@@ -55,11 +63,17 @@ class _BookState extends State<Book> {
   @override
   void initState() {
     super.initState();
-    getBook().then((res) {
+
+    getBook(streetId: getStreet().streetId).then((res) {
       setState(() {
         books = res.data['data']['list'];
       });
     });
+  }
+
+  MapModel getStreet() {
+    final model = Provider.of<MapModel>(context, listen: false);
+    return model;
   }
 
   @override

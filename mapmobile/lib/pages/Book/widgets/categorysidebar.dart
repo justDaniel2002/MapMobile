@@ -77,7 +77,7 @@ class _CategorySidebarState extends State<CategorySidebar> {
                           ? const Color.fromARGB(255, 200, 13, 0)
                           : Colors.white),
                   child: DynamicText(
-                    text: cate["categoryName"],
+                    text: cate["categoryName"] ?? "",
                     textStyle: TextStyle(
                         color: cate["categoryId"] == selectedCate
                             ? Colors.white

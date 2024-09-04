@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/shared/currenttime.dart';
 import 'package:mapmobile/shared/switch.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -16,19 +18,20 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GradientText(
-                "Đường Sách TPHCM",
-                style: TextStyle(fontSize: 25),
-              ),
-              ThinSmText(
-                text: "mỗi trải nhiệm, một niềm vui",
-                color: Colors.black38,
-              )
-            ],
-          ),
+          Consumer<MapModel>(
+              builder: (context, value, child) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GradientText(
+                        value.streetName,
+                        style: const TextStyle(fontSize: 25),
+                      ),
+                      const ThinSmText(
+                        text: "mỗi trải nhiệm, một niềm vui",
+                        color: Colors.black38,
+                      )
+                    ],
+                  )),
           Row(
             children: [
               const Currenttime(),

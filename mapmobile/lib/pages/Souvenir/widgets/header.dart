@@ -21,13 +21,13 @@ class Header extends StatelessWidget {
                   IconBtn(
                     icon: Icons.arrow_back_ios_new,
                     onTap: () {
-                      context.push("/");
+                      context.push("/welcome");
                     },
                   ),
                   IconBtn(
                     icon: Icons.home,
                     onTap: () {
-                      context.push("/");
+                      context.push("/welcome");
                     },
                   ),
                   SizedBox(

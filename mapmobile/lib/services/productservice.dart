@@ -7,7 +7,8 @@ Future<dynamic> getAllProduct() async {
   return response;
 }
 
-Future<dynamic> getBook({int? categoryId, int? genreId, String? search}) async {
+Future<dynamic> getBook(
+    {int? categoryId, int? genreId, String? search, int? streetId}) async {
   var filterData = [
     {"field": "ProductTypeId", "value": "1", "operand": 0}
   ];
@@ -25,6 +26,13 @@ Future<dynamic> getBook({int? categoryId, int? genreId, String? search}) async {
     ];
   }
 
+  if (streetId != null && streetId != 0) {
+    filterData = [
+      ...filterData,
+      {"field": "StreetId", "value": "$streetId", "operand": 0}
+    ];
+  }
+
   if (search != null && search.trim() != "") {
     filterData = [
       ...filterData,
@@ -38,7 +46,7 @@ Future<dynamic> getBook({int? categoryId, int? genreId, String? search}) async {
 }
 
 Future<dynamic> getSouvenir(
-    {int? categoryId, int? genreId, String? search}) async {
+    {int? categoryId, int? genreId, String? search, int? streetId}) async {
   var filterData = [
     {"field": "ProductTypeId", "value": "2", "operand": 0}
   ];
@@ -53,6 +61,13 @@ Future<dynamic> getSouvenir(
     filterData = [
       ...filterData,
       {"field": "Book.GenreId", "value": "$genreId", "operand": 0}
+    ];
+  }
+
+  if (streetId != null && streetId != 0) {
+    filterData = [
+      ...filterData,
+      {"field": "StreetId", "value": "$streetId", "operand": 0}
     ];
   }
 

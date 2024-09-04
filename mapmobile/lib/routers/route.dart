@@ -2,7 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:mapmobile/pages/Book/Book.dart';
 import 'package:mapmobile/pages/Event/Event.dart';
 import 'package:mapmobile/pages/EventDetail/eventdetail.dart';
-import 'package:mapmobile/pages/Map/map.dart';
+import 'package:mapmobile/pages/Map/fullmap.dart';
+import 'package:mapmobile/pages/MapOf/map.dart';
+import 'package:mapmobile/pages/MapPicking/mapPicking.dart';
 import 'package:mapmobile/pages/ProductDetail/productdetail.dart';
 import 'package:mapmobile/pages/Souvenir/Souvenir.dart';
 import 'package:mapmobile/pages/Welcome/Welcome.dart';
@@ -38,8 +40,16 @@ final router = GoRouter(
       builder: (context, state) => const Event(),
     ),
     GoRoute(
-      path: '/',
+      path: '/map',
+      builder: (context, state) => const FullMap(),
+    ),
+    GoRoute(
+      path: '/welcome',
       builder: (context, state) => const Welcome(),
+    ),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const MapPicking(),
     ),
   ],
 );
