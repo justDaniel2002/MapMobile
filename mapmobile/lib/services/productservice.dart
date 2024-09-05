@@ -74,9 +74,12 @@ Future<dynamic> getSouvenir(
   if (search != null && search.trim() != "") {
     filterData = [
       ...filterData,
-      {"field": "productName", "value": search, "operand": 1}
+      {"field": "productName", "value": search, "operand": 6}
     ];
   }
+
+  print("FilterData :");
+  print(filterData);
   final dio = Dio();
   final response = await dio.post('${baseURL}Product/paginate',
       data: {"limit": -1, "filters": filterData});
