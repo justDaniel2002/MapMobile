@@ -54,3 +54,9 @@ String formatDateTime(String input) {
   DateTime dateTime = DateTime.parse(input);
   return DateFormat('dd/MM/yyyy').format(dateTime);
 }
+
+bool isValidPhoneNumber(String phoneNumber) {
+  // Biểu thức chính quy để kiểm tra số điện thoại có đúng 10 chữ số
+  final RegExp regex = RegExp(r'^\d{10}$');
+  return regex.hasMatch(phoneNumber);
+}

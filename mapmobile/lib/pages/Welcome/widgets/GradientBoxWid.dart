@@ -13,6 +13,13 @@ List<Map<String, dynamic>> myList = [
     'Color2': const Color.fromARGB(255, 255, 203, 14),
   },
   {
+    'Icon': Icons.savings,
+    'Content': 'Điểm tích lũy',
+    'link': '/points',
+    'Color1': Color.fromARGB(255, 255, 153, 153),
+    'Color2': Color.fromARGB(255, 171, 0, 0),
+  },
+  {
     'Icon': Icons.redeem,
     'Content': 'Đồ lưu niệm',
     'link': '/souvenir',
