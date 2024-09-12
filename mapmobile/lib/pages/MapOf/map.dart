@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/kios_model.dart';
+import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/locationservice.dart';
 import 'package:mapmobile/services/storeservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
+import 'package:provider/provider.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key, this.storeId});
@@ -50,10 +53,12 @@ class _MapWidgetState extends State<MapWidget> {
             ),
             Stack(
               children: [
-                Image.asset(
-                  "assets/images/map.png",
-                  fit: BoxFit.contain,
-                ),
+                Consumer<MapModel>(builder: (context, value, child) {
+                  final model = context.read<MapModel>();
+                  return NetworkImageWithFallback(
+                      imageUrl: model.imageUrl,
+                      fallbackWidget: const Icon(Icons.error));
+                }),
                 Positioned(
                     left: left,
                     top: top,
@@ -64,6 +69,7 @@ class _MapWidgetState extends State<MapWidget> {
                           const Icon(
                             Icons.location_on,
                             color: Colors.red,
+                            size: 30,
                           ),
                           Container(
                             padding: const EdgeInsets.all(5),
@@ -119,8 +125,8 @@ class _MapWidgetState extends State<MapWidget> {
                                 )
                               ],
                             ),
-                          )
-                        ]))
+                          ),
+                        ])),
               ],
             )
           ],

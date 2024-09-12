@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/locationservice.dart';
@@ -32,10 +33,12 @@ class _FullMapState extends State<FullMap> {
               final model = context.read<MapModel>();
               return Stack(
                 children: [
-                  Image.asset(
-                    "assets/images/map.png",
-                    fit: BoxFit.contain,
-                  ),
+                  Consumer<MapModel>(builder: (context, value, child) {
+                    final model = context.read<MapModel>();
+                    return NetworkImageWithFallback(
+                        imageUrl: model.imageUrl,
+                        fallbackWidget: const Icon(Icons.error));
+                  }),
                   ...model.locations.map((loc) {
                     if (loc['xLocation'] != null && loc['yLocation'] != null) {
                       return Positioned(
@@ -69,6 +72,27 @@ class _FullMapState extends State<FullMap> {
                       return Container();
                     }
                   }),
+                  Consumer<KiosModel>(builder: (context, value, child) {
+                    final kmodel = context.read<KiosModel>();
+
+                    return Positioned(
+                        left: kmodel.xLocation * parentwidth,
+                        top: kmodel.yLocation * parentheight / 4,
+                        child: const Column(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.red,
+                            ),
+                            DynamicText(
+                              text: "you are here",
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red),
+                            )
+                          ],
+                        ));
+                  })
                 ],
               );
             })

@@ -53,7 +53,7 @@ class _MapPickingState extends State<MapPicking> {
                         model.setStreetName(st['streetName']);
                         model.setImage(st['urlImage']);
                         model.setLocations(st['locations']);
-                        context.push("/Welcome");
+                        context.push("/kiosPicking");
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

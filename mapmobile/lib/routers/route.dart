@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mapmobile/pages/Book/Book.dart';
 import 'package:mapmobile/pages/Event/Event.dart';
 import 'package:mapmobile/pages/EventDetail/eventdetail.dart';
+import 'package:mapmobile/pages/KiosPicking/kiospicking.dart';
 import 'package:mapmobile/pages/Map/fullmap.dart';
 import 'package:mapmobile/pages/MapOf/map.dart';
 import 'package:mapmobile/pages/MapPicking/mapPicking.dart';
@@ -65,6 +66,10 @@ final router = GoRouter(
     GoRoute(
       path: '/welcome',
       builder: (context, state) => const Welcome(),
+    ),
+    GoRoute(
+      path: '/kiosPicking',
+      builder: (context, state) => const KiosPicking(),
     ),
     GoRoute(
       path: '/',
