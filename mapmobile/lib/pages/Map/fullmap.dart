@@ -3,6 +3,7 @@ import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/locationservice.dart';
+import 'package:mapmobile/services/storeservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,58 @@ class FullMap extends StatefulWidget {
 }
 
 class _FullMapState extends State<FullMap> {
-  dynamic hoverStore = null;
+  dynamic selectedStore = null;
+
+  dynamic getStoreOnTap(String storeId) {
+    getStoreById(storeId).then((res) {
+      setState(() {
+        selectedStore = res;
+      });
+      showStore();
+    });
+  }
+
+  dynamic showStore() {
+    showDialog(
+        context: context,
+        builder: (context) => SimpleDialog(
+              children: [
+                Image.asset("assets/images/bookDialogBanner.jpeg"),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Positioned(
+                              child: NetworkImageWithFallback(
+                                  imageUrl: selectedStore['urlImage'],
+                                  fallbackWidget: const Icon(Icons.error))),
+                          DynamicText(
+                            text: selectedStore['storeName'],
+                            textStyle: const TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.timer),
+                          DynamicText(
+                              text:
+                                  "${selectedStore['openingHours'] ?? ""} - ${selectedStore['closingHours'] ?? ""}",
+                              textStyle: const TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      DynamicText(text: selectedStore['description'])
+                    ],
+                  ),
+                )
+              ],
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,30 +94,17 @@ class _FullMapState extends State<FullMap> {
                   ...model.locations.map((loc) {
                     if (loc['xLocation'] != null && loc['yLocation'] != null) {
                       return Positioned(
-                        left: loc['xLocation'] * parentwidth + parentwidth / 30,
+                        left: loc['xLocation'] * parentwidth - parentwidth / 36,
                         top: loc['yLocation'] * parentheight / 2.1,
-                        child: Row(
-                          children: [
-                            MouseRegion(
-                              onEnter: (event) {
-                                setState(() {
-                                  hoverStore = loc['storeId'];
-                                });
-                              },
-                              onExit: (event) {
-                                setState(() {
-                                  hoverStore = null;
-                                });
-                              },
-                              child: Container(
-                                width: parentwidth / 17,
-                                height: parentheight / 10,
-                                child: NetworkImageWithFallback(
-                                    imageUrl: loc['storeImage'] ?? "",
-                                    fallbackWidget: const Icon(Icons.error)),
-                              ),
-                            ),
-                          ],
+                        child: InkWell(
+                          onTap: () => getStoreOnTap(loc['storeId'].toString()),
+                          child: Container(
+                            width: parentwidth / 17,
+                            height: parentheight / 10,
+                            child: NetworkImageWithFallback(
+                                imageUrl: loc['storeImage'] ?? "",
+                                fallbackWidget: const Icon(Icons.error)),
+                          ),
                         ),
                       );
                     } else {
@@ -76,8 +115,8 @@ class _FullMapState extends State<FullMap> {
                     final kmodel = context.read<KiosModel>();
 
                     return Positioned(
-                        left: kmodel.xLocation * parentwidth,
-                        top: kmodel.yLocation * parentheight / 4,
+                        left: kmodel.xLocation * parentwidth - parentwidth / 36,
+                        top: kmodel.yLocation * parentheight / 2.1,
                         child: const Column(
                           children: [
                             Icon(

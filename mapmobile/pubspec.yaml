@@ -25,6 +25,7 @@ flutter:
   assets:
     - assets/images/mallbanner.jpg
     - assets/images/bookbanner.jpg
+    - assets/images/bookDialogBanner.jpeg
     - assets/images/map.png
   fonts:
     - family: Roboto
