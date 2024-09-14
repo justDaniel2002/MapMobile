@@ -31,34 +31,59 @@ class _FullMapState extends State<FullMap> {
     showDialog(
         context: context,
         builder: (context) => SimpleDialog(
+              clipBehavior: Clip.hardEdge,
               children: [
-                Image.asset("assets/images/bookDialogBanner.jpeg"),
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: 550,
+                      width: double.infinity,
+                      child: Container(),
+                    ),
+                    SizedBox(
+                      height: 400,
+                      width: double.infinity,
+                      child: Image.asset(
+                        "assets/images/bookDialogBanner.jpeg",
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        left: 30,
+                        child: Row(
+                          children: [
+                            NetworkImageWithFallback(
+                                imageUrl: selectedStore['urlImage'],
+                                fallbackWidget: const Icon(Icons.error)),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: DynamicText(
+                                text: selectedStore['storeName'],
+                                textStyle: const TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ))
+                  ],
+                ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  margin: EdgeInsets.symmetric(vertical: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        children: [
-                          Positioned(
-                              child: NetworkImageWithFallback(
-                                  imageUrl: selectedStore['urlImage'],
-                                  fallbackWidget: const Icon(Icons.error))),
-                          DynamicText(
-                            text: selectedStore['storeName'],
-                            textStyle: const TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      ),
-                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Icon(Icons.timer),
                           DynamicText(
                               text:
                                   "${selectedStore['openingHours'] ?? ""} - ${selectedStore['closingHours'] ?? ""}",
                               textStyle: const TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold)),
+                                  fontSize: 20, fontWeight: FontWeight.bold)),
                         ],
                       ),
                       DynamicText(text: selectedStore['description'])
