@@ -30,7 +30,8 @@ class _CategorySidebarState extends State<CategorySidebar> {
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       height: MediaQuery.of(context).size.height -
-          MediaQuery.of(context).size.height / 4,
+          MediaQuery.of(context).size.height / 4 -
+          100,
       child: SingleChildScrollView(
         child: Column(
           children: [

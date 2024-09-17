@@ -6,6 +6,7 @@ import 'package:mapmobile/pages/Book/widgets/genresidebar.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/genreservice.dart';
 import 'package:mapmobile/services/productservice.dart';
+import 'package:mapmobile/shared/text.dart';
 import 'package:provider/provider.dart';
 
 class Book extends StatefulWidget {
@@ -20,6 +21,7 @@ class _BookState extends State<Book> {
   List<dynamic> genres = [];
   int cid = 0;
   int gid = 0;
+  int sid = 0;
   Future<void> onCateChange(int categoryId) async {
     cid = categoryId;
     getGenreByCate(categoryId).then((res) {
@@ -28,7 +30,11 @@ class _BookState extends State<Book> {
       });
     });
 
-    getBook(categoryId: categoryId, streetId: getStreet().streetId).then((res) {
+    getBook(
+            categoryId: categoryId,
+            streetId: getStreet().streetId,
+            storeId: sid)
+        .then((res) {
       setState(() {
         books = res.data['data']['list'];
       });
@@ -37,7 +43,11 @@ class _BookState extends State<Book> {
 
   Future<void> onGenreChange(int genreId) async {
     gid = genreId;
-    getBook(categoryId: cid, genreId: genreId, streetId: getStreet().streetId)
+    getBook(
+            categoryId: cid,
+            genreId: genreId,
+            streetId: getStreet().streetId,
+            storeId: sid)
         .then((res) {
       setState(() {
         books = res.data['data']['list'];
@@ -51,9 +61,24 @@ class _BookState extends State<Book> {
             categoryId: cid,
             genreId: gid,
             search: text,
-            streetId: getStreet().streetId)
+            streetId: getStreet().streetId,
+            storeId: sid)
         .then((res) {
       print("get book ${res.data['data']['list']}");
+      setState(() {
+        books = res.data['data']['list'];
+      });
+    });
+  }
+
+  Future<void> onStoreChange(int storeId) async {
+    sid = storeId;
+    getBook(
+            categoryId: cid,
+            genreId: gid,
+            streetId: getStreet().streetId,
+            storeId: storeId)
+        .then((res) {
       setState(() {
         books = res.data['data']['list'];
       });
@@ -100,16 +125,44 @@ class _BookState extends State<Book> {
                         child: BookList(books: books))),
                 Flexible(
                     flex: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
                       children: [
-                        GenreSidebar(
-                          genres: genres,
-                          onGenreChange: onGenreChange,
+                        Consumer<MapModel>(builder: (context, value, child) {
+                          var model = context.read<MapModel>();
+                          List<dynamic> locations =
+                              model.locations as List<dynamic>;
+                          return DropdownButton(
+                            value: sid,
+                            items: [
+                              const DropdownMenuItem(
+                                value: 0,
+                                child: DynamicText(text: "Tổng hợp"),
+                              ),
+                              ...locations
+                                  .where((loc) => loc['storeId'] != 0)
+                                  .map((loc) => DropdownMenuItem(
+                                      value: loc['storeId'],
+                                      child:
+                                          DynamicText(text: loc['storeName'])))
+                            ],
+                            onChanged: (v) {
+                              onStoreChange(v as int);
+                            },
+                            isExpanded: true,
+                          );
+                        }),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GenreSidebar(
+                              genres: genres,
+                              onGenreChange: onGenreChange,
+                            ),
+                            CategorySidebar(
+                              onCateChange: onCateChange,
+                            )
+                          ],
                         ),
-                        CategorySidebar(
-                          onCateChange: onCateChange,
-                        )
                       ],
                     ))
               ],

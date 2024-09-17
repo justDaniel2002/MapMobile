@@ -29,7 +29,8 @@ class _GenreSidebar extends State<GenreSidebar> {
     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height -
-          MediaQuery.of(context).size.height / 3,
+          MediaQuery.of(context).size.height / 3 -
+          100,
       child: SingleChildScrollView(
         child: Column(
           children: [

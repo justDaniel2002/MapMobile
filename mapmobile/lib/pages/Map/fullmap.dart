@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
-import 'package:mapmobile/services/locationservice.dart';
 import 'package:mapmobile/services/storeservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
@@ -71,7 +70,7 @@ class _FullMapState extends State<FullMap> {
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  margin: EdgeInsets.symmetric(vertical: 30),
+                  margin: const EdgeInsets.symmetric(vertical: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
