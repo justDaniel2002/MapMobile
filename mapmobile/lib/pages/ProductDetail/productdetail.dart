@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/productservice.dart';
+import 'package:mapmobile/shared/Btn.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
@@ -32,7 +33,7 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -49,49 +50,70 @@ class _ProductDetailState extends State<ProductDetail> {
                 children: [
                   Flexible(
                       flex: 2,
-                      child: Container(
-                        color: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            NetworkImageWithFallback(
-                                imageUrl: product["urlImage"] ?? "",
-                                fallbackWidget: const Icon(Icons.error)),
-                            InkWell(
-                                onTap: () {
-                                  if (product["storeId"] != null) {
-                                    context.push("/map/${product["storeId"]}");
-                                  }
-                                },
-                                child: DynamicText(
-                                    text: product["storeName"] != null
-                                        ? "Đi đến cửa hàng >"
-                                        : "Chưa mở bán"))
-                          ],
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 20),
+                                child: NetworkImageWithFallback(
+                                    imageUrl: product["urlImage"] ?? "",
+                                    fallbackWidget: const Icon(Icons.error)),
+                              ),
+                              Btn(
+                                  content: product["storeName"] != null
+                                      ? "Xem vị trí cửa hàng"
+                                      : "Chưa mở bán",
+                                  onTap: () {
+                                    if (product["storeId"] != null) {
+                                      context
+                                          .push("/map/${product["storeId"]}");
+                                    }
+                                  })
+                            ],
+                          ),
                         ),
                       )),
                   Flexible(
                       flex: 3,
                       child: Container(
-                        color: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 20),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           children: [
                             Container(
+                              margin: EdgeInsets.only(bottom: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const DynamicText(
-                                    text: "Thông Tin Chi Tiết",
-                                    textStyle: TextStyle(
+                                  DynamicText(
+                                    text: product['productName'] ?? "",
+                                    textStyle: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  DynamicText(
+                                    text: formatToVND(product['price'] ?? 0),
+                                    textStyle: const TextStyle(
+                                        color: Color.fromARGB(255, 186, 12, 0),
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
-                                    height: 350,
+                                    height: 300,
                                     child: GridView.count(
                                       // shrinkWrap: true,
                                       physics:
@@ -108,10 +130,6 @@ class _ProductDetailState extends State<ProductDetail> {
                                                 ? product['productId']
                                                     .toString()
                                                 : ""),
-                                        const DynamicText(
-                                            text: ("Tên sản phẩm")),
-                                        DynamicText(
-                                            text: product['productName'] ?? ""),
                                         const DynamicText(text: ("Phân loại")),
                                         DynamicText(
                                             text:
@@ -134,6 +152,19 @@ class _ProductDetailState extends State<ProductDetail> {
                                       ],
                                     ),
                                   ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(bottom: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 40, vertical: 20),
+                              child: Column(
+                                children: [
                                   const DynamicText(
                                     text: "Mô tả sản phẩm",
                                     textStyle: TextStyle(
@@ -147,7 +178,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   )
                                 ],
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ))

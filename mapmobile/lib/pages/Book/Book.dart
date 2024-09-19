@@ -104,7 +104,7 @@ class _BookState extends State<Book> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 244, 244, 244),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -120,6 +120,7 @@ class _BookState extends State<Book> {
                 Flexible(
                     flex: 3,
                     child: Container(
+                        color: Colors.white,
                         width: double.infinity,
                         padding: const EdgeInsets.only(right: 10),
                         child: BookList(books: books))),

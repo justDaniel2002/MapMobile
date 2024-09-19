@@ -22,9 +22,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: const Color.fromARGB(255, 243, 243, 243),
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 243, 243, 243),
           ),
           fontFamily: 'Roboto'),
     );
