@@ -116,10 +116,12 @@ class _FullMapState extends State<FullMap> {
                         fallbackWidget: const Icon(Icons.error));
                   }),
                   ...model.locations.map((loc) {
-                    if (loc['xLocation'] != null && loc['yLocation'] != null) {
+                    if (loc['xLocation'] != null &&
+                        loc['yLocation'] != null &&
+                        loc['storeId'] != 0) {
                       return Positioned(
                         left: loc['xLocation'] * parentwidth - parentwidth / 36,
-                        top: loc['yLocation'] * parentheight / 2.1,
+                        top: loc['yLocation'] * parentheight / 1.9,
                         child: InkWell(
                           onTap: () => getStoreOnTap(loc['storeId'].toString()),
                           child: Container(
