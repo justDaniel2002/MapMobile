@@ -47,7 +47,7 @@ class KiosPicking extends StatelessWidget {
                                           .setkiosName(loc['kiosName'])
                                           .setxLocation(loc['xLocation'])
                                           .setyLocation(loc['yLocation']);
-                                      context.push("/Welcome");
+                                      context.go("/Welcome");
                                     },
                                     child: Container(
                                       width: parentwidth / 2,

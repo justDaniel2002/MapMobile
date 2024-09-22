@@ -29,7 +29,7 @@ class BookList extends StatelessWidget {
 
                 return InkWell(
                   onTap: () {
-                    context.push("/product/${b["productId"]}");
+                    context.push("/book/${b["productId"]}");
                   },
                   child: Container(
                     padding: const EdgeInsets.all(10),

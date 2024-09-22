@@ -27,7 +27,7 @@ class SouvenirList extends StatelessWidget {
                     : "https://inantao.com/wp-content/uploads/2021/03/3d-illustration-mockup-nbblank-hardcover-book-969x1024.jpg";
                 return InkWell(
                   onTap: () {
-                    context.push("/product/${b["productId"]}");
+                    context.push("/souvernir/${b["productId"]}");
                   },
                   child: Container(
                     padding: const EdgeInsets.all(10),

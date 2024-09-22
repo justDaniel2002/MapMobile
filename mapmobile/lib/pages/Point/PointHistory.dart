@@ -6,9 +6,8 @@ import 'package:mapmobile/util/util.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 
 class PointHistory extends StatefulWidget {
-  const PointHistory({super.key, this.customerId, this.storeId});
-  final String? customerId;
-  final String? storeId;
+  const PointHistory({super.key, this.phone});
+  final String? phone;
   @override
   State<PointHistory> createState() => _PointHistoryState();
 }
@@ -19,7 +18,7 @@ class _PointHistoryState extends State<PointHistory> {
   @override
   void initState() {
     super.initState();
-    getPointHistory(widget.customerId, widget.storeId).then((res) {
+    getPointHistory2(widget.phone).then((res) {
       setState(() {
         histories = res['data']['list'];
       });

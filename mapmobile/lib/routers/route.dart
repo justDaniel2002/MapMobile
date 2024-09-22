@@ -9,7 +9,9 @@ import 'package:mapmobile/pages/MapPicking/mapPicking.dart';
 import 'package:mapmobile/pages/Point/InputPhone.dart';
 import 'package:mapmobile/pages/Point/Overall.dart';
 import 'package:mapmobile/pages/Point/PointHistory.dart';
+import 'package:mapmobile/pages/ProductDetail/bookdetail.dart';
 import 'package:mapmobile/pages/ProductDetail/productdetail.dart';
+import 'package:mapmobile/pages/ProductDetail/souvernirdetail.dart';
 import 'package:mapmobile/pages/Souvenir/Souvenir.dart';
 import 'package:mapmobile/pages/Welcome/Welcome.dart';
 
@@ -17,16 +19,24 @@ import 'package:mapmobile/pages/Welcome/Welcome.dart';
 final router = GoRouter(
   routes: [
     GoRoute(
-      path: '/pointHistory/:customerId/:storeId',
+      path: '/pointHistory/:phone',
       builder: (context, state) => PointHistory(
-        customerId: state.pathParameters['customerId'],
-        storeId: state.pathParameters['storeId'],
+        phone: state.pathParameters['phone'],
       ),
     ),
     GoRoute(
       path: '/product/:id',
       builder: (context, state) =>
           ProductDetail(pid: state.pathParameters['id']),
+    ),
+    GoRoute(
+      path: '/book/:id',
+      builder: (context, state) => BookDetail(pid: state.pathParameters['id']),
+    ),
+    GoRoute(
+      path: '/souvernir/:id',
+      builder: (context, state) =>
+          SouvernirDetail(pid: state.pathParameters['id']),
     ),
     GoRoute(
       path: '/event/:id',

@@ -65,7 +65,7 @@ class _InputphoneState extends State<Inputphone> {
                 return;
               }
 
-              context.push("/pointOverall/${_controller.text}");
+              context.push("/pointHistory/${_controller.text}");
             },
             style: ElevatedButton.styleFrom(
                 shape: const RoundedRectangleBorder(

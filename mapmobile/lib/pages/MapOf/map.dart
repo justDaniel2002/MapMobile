@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/locationservice.dart';
