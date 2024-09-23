@@ -29,7 +29,7 @@ Future<dynamic> getPointHistory2(String? phone) async {
   final response = await dio.post('${baseURL}PointHistory/paginate', data: {
     "limit": -1,
     "filters": [
-      {"field": "Customer.Phone", "value": phone, "operand": 0},
+      {"field": "Customer.Phone", "value": phone, "operand": 0}
     ]
   });
   return response.data;

@@ -32,6 +32,7 @@ class _PointHistoryState extends State<PointHistory> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 40),
@@ -39,12 +40,30 @@ class _PointHistoryState extends State<PointHistory> {
                 onTextChange: () {},
               ),
             ),
-            const DynamicText(
-                text: "Lịch sử tích điểm",
-                textStyle: TextStyle(
-                    color: Color.fromARGB(255, 182, 12, 0),
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold)),
+            const Center(
+              child: const DynamicText(
+                  text: "Lịch sử tích điểm",
+                  textStyle: TextStyle(
+                      color: Color.fromARGB(255, 182, 12, 0),
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 200),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  DynamicText(
+                    text:
+                        "Xin chào ${histories.length > 1 ? histories[0]['customerName'] : ""}",
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: Color.fromARGB(255, 182, 12, 0)),
+                  )
+                ],
+              ),
+            ),
             Container(
               width: parentwidth / 5 * 3,
               padding: const EdgeInsets.all(20),
@@ -63,8 +82,12 @@ class _PointHistoryState extends State<PointHistory> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             DynamicText(
-                              text: h['note'],
-                              textStyle: TextStyle(color: Colors.green),
+                              text:
+                                  "${h['storeName'] ?? ""} - ${h['note'] ?? ""}",
+                              textStyle: TextStyle(
+                                  color: h['giftId'] == null
+                                      ? Colors.green
+                                      : Colors.red),
                             ),
                             DynamicText(text: formatDateTime(h['createdAt']))
                           ])),
