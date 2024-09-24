@@ -81,15 +81,25 @@ class _PointHistoryState extends State<PointHistory> {
                   ...histories.map((h) => Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            DynamicText(
-                              text:
-                                  "${h['storeName'] ?? ""} - ${h['note'] ?? ""}",
-                              textStyle: TextStyle(
-                                  color: h['giftId'] == null
-                                      ? Colors.green
-                                      : Colors.red),
+                            Flexible(
+                              flex: 3,
+                              child: Wrap(
+                                children: [
+                                  DynamicText(
+                                    text:
+                                        "${h['giftId'] == null ? 'Bạn nhận được ${h['pointAmount'] ?? 0} cho đơn hàng ${h['amount'] ?? 0}' : ''} tại cửa hàng ${h['storeName'] ?? "Bạn đã sử dụng ${h['pointAmount'] ?? 0} để đổi ${h['quantity'] ?? 0}${h['gift'] != null ? h['gift']['giftName'] : ""} tại cửa hàng ${h['storeName']}. Số điểm hiện tại là ${h['currentPoint'] ?? 0}"}",
+                                    textStyle: TextStyle(
+                                        color: h['giftId'] == null
+                                            ? Colors.green
+                                            : Colors.red),
+                                  )
+                                ],
+                              ),
                             ),
-                            DynamicText(text: formatDateTime(h['createdAt']))
+                            Flexible(
+                                flex: 1,
+                                child: DynamicText(
+                                    text: formatDateTime(h['createdAt'])))
                           ])),
                   Center(
                     child: ElevatedButton(

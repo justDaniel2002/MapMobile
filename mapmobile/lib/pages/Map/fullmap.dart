@@ -35,7 +35,7 @@ class _FullMapState extends State<FullMap> {
                 Stack(
                   children: [
                     SizedBox(
-                      height: 550,
+                      height: 530,
                       width: double.infinity,
                       child: Container(),
                     ),
@@ -52,9 +52,12 @@ class _FullMapState extends State<FullMap> {
                         left: 30,
                         child: Row(
                           children: [
-                            NetworkImageWithFallback(
-                                imageUrl: selectedStore['urlImage'],
-                                fallbackWidget: const Icon(Icons.error)),
+                            SizedBox(
+                              width: 200,
+                              child: NetworkImageWithFallback(
+                                  imageUrl: selectedStore['urlImage'],
+                                  fallbackWidget: const Icon(Icons.error)),
+                            ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
@@ -85,7 +88,10 @@ class _FullMapState extends State<FullMap> {
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                         ],
                       ),
-                      DynamicText(text: selectedStore['description'])
+                      DynamicText(
+                          text: selectedStore['description'],
+                          textStyle: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold))
                     ],
                   ),
                 )
@@ -120,13 +126,18 @@ class _FullMapState extends State<FullMap> {
                         loc['yLocation'] != null &&
                         loc['storeId'] != 0) {
                       return Positioned(
-                        left: loc['xLocation'] * parentwidth - parentwidth / 36,
-                        top: loc['yLocation'] * parentheight / 1.9,
+                        left: loc['xLocation'] * parentwidth - parentwidth / 34,
+                        top: loc['yLocation'] * parentheight / 2.1 +
+                            loc['yLocation'] * parentheight / 20 -
+                            20,
                         child: InkWell(
                           onTap: () => getStoreOnTap(loc['storeId'].toString()),
                           child: Container(
                             width: parentwidth / 17,
                             height: parentheight / 10,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10)),
+                            clipBehavior: Clip.hardEdge,
                             child: NetworkImageWithFallback(
                                 imageUrl: loc['storeImage'] ?? "",
                                 fallbackWidget: const Icon(Icons.error)),

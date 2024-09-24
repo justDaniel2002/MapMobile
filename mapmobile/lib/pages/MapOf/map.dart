@@ -41,7 +41,9 @@ class _MapWidgetState extends State<MapWidget> {
     double parentwidth = MediaQuery.of(context).size.width;
     double parentheight = MediaQuery.of(context).size.height;
     double left = location['xLocation'] * parentwidth;
-    double top = location['yLocation'] * parentheight / 2;
+    double top = location['yLocation'] * parentheight / 2.1 +
+        location['yLocation'] * parentheight / 20 -
+        20;
     return Scaffold(
       body: SafeArea(
         child: Column(
