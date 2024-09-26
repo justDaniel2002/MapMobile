@@ -86,8 +86,9 @@ class _PointHistoryState extends State<PointHistory> {
                               child: Wrap(
                                 children: [
                                   DynamicText(
-                                    text:
-                                        "${h['giftId'] == null ? 'Bạn nhận được ${h['pointAmount'] ?? 0} cho đơn hàng ${h['amount'] ?? 0}' : ''} tại cửa hàng ${h['storeName'] ?? "Bạn đã sử dụng ${h['pointAmount'] ?? 0} để đổi ${h['quantity'] ?? 0}${h['gift'] != null ? h['gift']['giftName'] : ""} tại cửa hàng ${h['storeName']}. Số điểm hiện tại là ${h['currentPoint'] ?? 0}"}",
+                                    text: h['giftId'] == null
+                                        ? "Bạn nhận được ${h['pointAmount'] ?? 0} điểm cho đơn hàng ${h['amount'] ?? 0} đồng tại cửa hàng ${h['storeName']}"
+                                        : "Bạn đã sử dụng ${h['pointAmount'] ?? 0} điểm để đổi ${h['quantity'] ?? 0} ${h['gift'] != null ? h['gift']['giftName'] : ""} tại cửa hàng ${h['storeName']}. Số điểm hiện tại là ${h['currentPoint'] ?? 0} điêm",
                                     textStyle: TextStyle(
                                         color: h['giftId'] == null
                                             ? Colors.green

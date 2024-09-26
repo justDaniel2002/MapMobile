@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/map_model.dart';
 import 'package:mapmobile/pages/Event/widget/Eventwidget.dart';
+import 'package:provider/provider.dart';
 
 class Eventlist extends StatelessWidget {
   const Eventlist({super.key, required this.eventList});
@@ -13,12 +15,24 @@ class Eventlist extends StatelessWidget {
       height: deviceHeight - 100,
       child: SingleChildScrollView(
         child: Container(
-          child: Wrap(
-            spacing: 40,
-            runSpacing: 10,
-            children: eventList.map((e) {
-              return SizedBox(width: itemwidth, child: Eventwidget(event: e));
-            }).toList(),
+          child: Consumer<MapModel>(
+            builder: (context, value, child) {
+              final model = context.read<MapModel>();
+              return Wrap(
+                spacing: 40,
+                runSpacing: 10,
+                children: [
+                  ...model?.locations?.map((loc) {
+                    if (loc['events']?.length > 0) {
+                      return SizedBox(
+                          width: itemwidth,
+                          child: Eventwidget(event: loc['events'][0]));
+                    } else
+                      return Container();
+                  })
+                ],
+              );
+            },
           ),
         ),
       ),
