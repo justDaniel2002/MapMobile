@@ -58,7 +58,7 @@ class _PointHistoryState extends State<PointHistory> {
                 children: [
                   DynamicText(
                     text:
-                        "Xin chào ${histories.length > 1 ? histories[0]['customerName'] : ""} - ${Cusinfo['point'] ?? 0} điểm",
+                        "Xin chào ${Cusinfo['customerName'] ?? ""} - ${Cusinfo['point'] ?? 0} điểm",
                     textStyle: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
