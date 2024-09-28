@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
 import 'package:mapmobile/services/storeservice.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:provider/provider.dart';
@@ -109,7 +109,7 @@ class _FullMapState extends State<FullMap> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 40),
-              child: Header(onTextChange: () {}),
+              child: Header(),
             ),
             Consumer<MapModel>(builder: (context, value, child) {
               final model = context.read<MapModel>();

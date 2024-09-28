@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
 
@@ -28,9 +28,7 @@ class _InputphoneState extends State<Inputphone> {
       body: SafeArea(
           child: Column(
         children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 40),
-              child: Header(onTextChange: () {})),
+          Container(margin: const EdgeInsets.only(bottom: 40), child: Header()),
           Container(
             margin: const EdgeInsets.only(bottom: 60),
             child: const DynamicText(

@@ -12,6 +12,12 @@ Future<dynamic> getAllRecord(String? phone) async {
   return response.data;
 }
 
+Future<dynamic> getCustomer(int? customerId) async {
+  final dio = Dio();
+  final response = await dio.get('${baseURL}Customer/$customerId');
+  return response.data;
+}
+
 Future<dynamic> getPointHistory(String? customerId, String? storeId) async {
   final dio = Dio();
   final response = await dio.post('${baseURL}PointHistory/paginate', data: {

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mapmobile/services/customerservice.dart';
 import 'package:mapmobile/shared/text.dart';
 import 'package:mapmobile/util/util.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 
 class PointHistory extends StatefulWidget {
   const PointHistory({super.key, this.phone});
@@ -14,13 +14,18 @@ class PointHistory extends StatefulWidget {
 
 class _PointHistoryState extends State<PointHistory> {
   List<dynamic> histories = [];
-
+  dynamic Cusinfo = {};
   @override
   void initState() {
     super.initState();
     getPointHistory2(widget.phone).then((res) {
       setState(() {
         histories = res['data']['list'];
+      });
+      getCustomer(histories[0]['customerId']).then((cusInfo) {
+        setState(() {
+          Cusinfo = cusInfo;
+        });
       });
     });
   }
@@ -36,9 +41,7 @@ class _PointHistoryState extends State<PointHistory> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 40),
-              child: Header(
-                onTextChange: () {},
-              ),
+              child: Header(),
             ),
             const Center(
               child: const DynamicText(
@@ -55,7 +58,7 @@ class _PointHistoryState extends State<PointHistory> {
                 children: [
                   DynamicText(
                     text:
-                        "Xin chào ${histories.length > 1 ? histories[0]['customerName'] : ""}",
+                        "Xin chào ${histories.length > 1 ? histories[0]['customerName'] : ""} - ${Cusinfo['point'] ?? 0} điểm",
                     textStyle: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,

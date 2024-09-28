@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/pages/Event/widget/Eventlist.dart';
 import 'package:mapmobile/services/eventservice.dart';
 
@@ -39,9 +39,7 @@ class _EventState extends State<Event> {
       body: SafeArea(
           child: Column(
         children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 40),
-              child: Header(onTextChange: onTextChange)),
+          Container(margin: const EdgeInsets.only(bottom: 40), child: Header()),
           Eventlist(eventList: eventList)
         ],
       )),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapmobile/models/kios_model.dart';
 import 'package:mapmobile/models/map_model.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/services/locationservice.dart';
 import 'package:mapmobile/services/storeservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
@@ -50,7 +51,7 @@ class _MapWidgetState extends State<MapWidget> {
           children: [
             Container(
               margin: const EdgeInsets.only(bottom: 40),
-              child: Header(onTextChange: () {}),
+              child: Header(),
             ),
             Stack(
               children: [
@@ -128,6 +129,26 @@ class _MapWidgetState extends State<MapWidget> {
                             ),
                           ),
                         ])),
+                Consumer<KiosModel>(builder: (context, value, child) {
+                  final kmodel = context.read<KiosModel>();
+
+                  return Positioned(
+                      left: kmodel.xLocation * parentwidth - parentwidth / 36,
+                      top: kmodel.yLocation * parentheight / 2.1,
+                      child: const Column(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.red,
+                          ),
+                          DynamicText(
+                            text: "you are here",
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.red),
+                          )
+                        ],
+                      ));
+                })
               ],
             )
           ],

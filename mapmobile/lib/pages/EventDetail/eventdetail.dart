@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/services/eventservice.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
 import 'package:mapmobile/shared/text.dart';
@@ -32,9 +32,7 @@ class _EventDetailState extends State<EventDetail> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Header(
-              onTextChange: () {},
-            ),
+            Header(),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40),
               child: Column(

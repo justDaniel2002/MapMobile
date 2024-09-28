@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mapmobile/models/map_model.dart';
+import 'package:provider/provider.dart';
 
 String getCurrentTime() {
   DateTime now = DateTime.now();
@@ -59,4 +62,9 @@ bool isValidPhoneNumber(String phoneNumber) {
   // Biểu thức chính quy để kiểm tra số điện thoại có đúng 10 chữ số
   final RegExp regex = RegExp(r'^\d{10}$');
   return regex.hasMatch(phoneNumber);
+}
+
+MapModel getStreet(BuildContext context) {
+  final model = Provider.of<MapModel>(context, listen: false);
+  return model;
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/services/customerservice.dart';
 import 'package:mapmobile/shared/text.dart';
 
@@ -34,9 +34,7 @@ class _OverallState extends State<Overall> {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 40),
-            child: Header(
-              onTextChange: () {},
-            ),
+            child: Header(),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 60),

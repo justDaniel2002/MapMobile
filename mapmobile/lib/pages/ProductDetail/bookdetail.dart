@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mapmobile/pages/Book/widgets/header.dart';
+import 'package:mapmobile/shared/header.dart';
 import 'package:mapmobile/services/productservice.dart';
 import 'package:mapmobile/shared/Btn.dart';
 import 'package:mapmobile/shared/networkimagefallback.dart';
@@ -41,9 +41,7 @@ class _BookDetailState extends State<BookDetail> {
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 40),
-                child: Header(
-                  onTextChange: () {},
-                ),
+                child: Header(),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

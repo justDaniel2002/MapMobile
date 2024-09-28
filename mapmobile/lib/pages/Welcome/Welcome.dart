@@ -28,24 +28,29 @@ class Welcome extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.only(right: 40),
                           child: Consumer<MapModel>(
-                            builder: (context, value, child) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                BoldXLText(
-                                    text: "${value.streetName} XIN CHÀO BẠN!"),
-                                const DynamicText(
-                                  text:
-                                      "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại đường sách nhé.",
-                                  textStyle: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w100),
-                                  verMargin: 30,
-                                ),
-                                Image.asset('assets/images/bookbanner.jpg',
-                                    width: double.infinity, fit: BoxFit.contain)
-                              ],
-                            ),
+                            builder: (context, value, child) {
+                              final model = context.read<MapModel>();
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  BoldXLText(
+                                      text:
+                                          "${model.streetName} XIN CHÀO BẠN!"),
+                                  const DynamicText(
+                                    text:
+                                        "Hãy cùng nhau tận hưởng, trải nhiệm những hoạt động tiện ích thú vị, đa dạng phong phú tại đường sách nhé.",
+                                    textStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w100),
+                                    verMargin: 30,
+                                  ),
+                                  Image.asset('assets/images/bookbanner.jpg',
+                                      width: double.infinity,
+                                      fit: BoxFit.contain)
+                                ],
+                              );
+                            },
                           ),
                         ),
                       ),

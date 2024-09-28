@@ -16,6 +16,14 @@ Future<dynamic> getEvent({String? search}) async {
   return response;
 }
 
+Future<dynamic> getEventByStreetId(int? streetId) async {
+  var filterData = [];
+
+  final dio = Dio();
+  final response = await dio.get('${baseURL}Event/Street/$streetId');
+  return response.data;
+}
+
 Future<dynamic> getEventById({String? id}) async {
   final dio = Dio();
   final response = await dio.get('${baseURL}Event/$id');
